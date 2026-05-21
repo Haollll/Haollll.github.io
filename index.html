@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hao Lee</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --text: #1a1a1a;
+      --muted: #888;
+      --accent: #c0392b;
+      --border: #ddd;
+      --card: #ffffff;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    a:hover { color: var(--accent); }
+
+    /* Layout */
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Header */
+    header {
+      padding: 64px 0 48px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .header-inner {
+      display: flex;
+      gap: 40px;
+      align-items: flex-start;
+    }
+
+    .avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ddd;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 2px solid var(--border);
+    }
+
+    .avatar img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .avatar-placeholder {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      color: var(--muted);
+      background: #e8e5df;
+    }
+
+    .header-text h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.2;
+      margin-bottom: 6px;
+    }
+
+    .header-text .role {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 16px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 300;
+    }
+
+    .header-text p {
+      font-size: 14.5px;
+      color: #444;
+      max-width: 500px;
+      margin-bottom: 20px;
+    }
+
+    .links {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      font-family: 'DM Mono', monospace;
+      font-size: 12.5px;
+    }
+
+    .links a {
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s;
+    }
+
+    .links a:hover { color: var(--accent); }
+
+    /* Nav */
+    nav {
+      padding: 20px 0;
+      display: flex;
+      gap: 28px;
+      font-family: 'DM Mono', monospace;
+      font-size: 12px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--bg);
+      z-index: 10;
+    }
+
+    nav a {
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover, nav a.active { color: var(--text); }
+
+    /* Sections */
+    section {
+      padding: 48px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    h2 {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 28px;
+    }
+
+    /* Research items */
+    .research-item {
+      margin-bottom: 32px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid #ebe8e2;
+    }
+
+    .research-item:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .research-item .title {
+      font-family: 'DM Serif Display', serif;
+      font-size: 17px;
+      font-weight: 400;
+      margin-bottom: 4px;
+    }
+
+    .research-item .meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .research-item .meta .tag {
+      display: inline-block;
+      background: #eee;
+      border-radius: 2px;
+      padding: 1px 6px;
+      margin-right: 6px;
+      font-size: 10.5px;
+    }
+
+    .research-item p {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 10px;
+    }
+
+    .research-item .item-links {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      display: flex;
+      gap: 14px;
+    }
+
+    .research-item .item-links a {
+      color: var(--accent);
+    }
+
+    /* Experience */
+    .exp-item {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .exp-item .date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    .exp-item .exp-content .org {
+      font-weight: 500;
+      margin-bottom: 2px;
+    }
+
+    .exp-item .exp-content .position {
+      font-size: 13.5px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .exp-item .exp-content .desc {
+      font-size: 13px;
+      color: #777;
+    }
+
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .skill-group h3 {
+      font-family: 'DM Mono', monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .skill-group p {
+      font-size: 13.5px;
+      color: #555;
+      line-height: 1.8;
+    }
+
+    /* News */
+    .news-item {
+      display: grid;
+      grid-template-columns: 100px 1fr;
+      gap: 16px;
+      margin-bottom: 14px;
+      font-size: 14px;
+    }
+
+    .news-item .news-date {
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      padding-top: 2px;
+    }
+
+    /* Footer */
+    footer {
+      padding: 32px 0;
+      font-family: 'DM Mono', monospace;
+      font-size: 11.5px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 600px) {
+      .header-inner { flex-direction: column; gap: 20px; }
+      .exp-item { grid-template-columns: 1fr; gap: 4px; }
+      .news-item { grid-template-columns: 1fr; gap: 2px; }
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <header>
+    <div class="header-inner">
+      <div class="avatar">
+        <div class="avatar-placeholder">H</div>
+      </div>
+      <div class="header-text">
+        <h1>Hao Lee</h1>
+        <div class="role">MS Mechanical Engineering (Data Science) · University of Washington</div>
+        <p>
+          I work on robot learning and autonomous systems — building systems that perceive, reason, and act reliably in the real world. Currently a Research Assistant in the <a href="https://robotlearning.cs.washington.edu" style="color:var(--accent)">Robot Learning Lab</a> at UW.
+        </p>
+        <div class="links">
+          <a href="mailto:Howard.lee1121@gmail.com">✉ howard.lee1121@gmail.com</a>
+          <a href="https://github.com/Haollll" target="_blank">⌥ GitHub</a>
+          <a href="cv0510.pdf" target="_blank">↓ CV</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <nav>
+    <a href="#news">News</a>
+    <a href="#research">Research</a>
+    <a href="#experience">Experience</a>
+    <a href="#skills">Skills</a>
+  </nav>
+
+  <!-- NEWS -->
+  <section id="news">
+    <h2>News</h2>
+
+    <div class="news-item">
+      <div class="news-date">May 2026</div>
+      <div>Joined the <a href="https://robotlearning.cs.washington.edu">Robot Learning Lab</a> at UW as a Research Assistant, working with Tyler Han on LLM-augmented reward learning for imitation learning systems. Targeting ICRA 2026.</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Jan 2026</div>
+      <div>Built an end-to-end VLA pipeline for 6-DOF robot manipulation as capstone in CSE571 AI-Robotics.</div>
+    </div>
+
+    <div class="news-item">
+      <div class="news-date">Sep 2025</div>
+      <div>Started MS in Mechanical Engineering (Data Science track) at the University of Washington.</div>
+    </div>
+  </section>
+
+  <!-- RESEARCH -->
+  <section id="research">
+    <h2>Research</h2>
+
+    <div class="research-item">
+      <div class="title">LLM-Augmented Reward Learning for Imitation from Observation</div>
+      <div class="meta">
+        <span class="tag">ongoing</span>
+        Robot Learning Lab, UW · Summer 2026
+      </div>
+      <p>
+        Integrating LLM-inferred reward functions into MPAIL (planning-based adversarial imitation learning from observation) to improve task generalization. Targeting ICRA 2026.
+      </p>
+    </div>
+
+    <div class="research-item">
+      <div class="title">LLM-Inferred Reward Functions for Task-Based RL</div>
+      <div class="meta">
+        <span class="tag">complete</span>
+        CSE579 Reinforcement Learning, UW · Spring 2026
+      </div>
+      <p>
+        Built an RLHF-style reward learning pipeline replacing human annotators with an LLM. The LLM generates a fixed reward function and semantic trajectory summarizer via RAG; an ensemble reward model (Bradley-Terry loss + active learning) minimizes LLM queries. Combined reward trains PPO on HalfCheetah-v5.
+      </p>
+    </div>
+
+    <div class="research-item">
+      <div class="title">Vision-Language-Action Robot Control Pipeline</div>
+      <div class="meta">
+        <span class="tag">complete</span>
+        CSE571 AI-Robotics, UW · Winter 2026
+      </div>
+      <p>
+        End-to-end 4-stage VLA system: natural-language command → Gemini-based semantic 2D waypoint planning → stereo depth projection → Cartesian PID trajectory execution on a 6-DOF robot arm.
+      </p>
+      <div class="item-links">
+        <a href="https://github.com/Haollll/vla_robot" target="_blank">↗ GitHub</a>
+      </div>
+    </div>
+
+    <div class="research-item">
+      <div class="title">GNN Formation Control for Multi-Drone Systems</div>
+      <div class="meta">
+        <span class="tag">complete</span>
+        EE546 Advanced Control Theory, UW · Winter 2026
+      </div>
+      <p>
+        GNN policy trained via imitation learning to maintain chain formation across leader-follower drone networks. Achieved zero-shot generalization from n=4 to n=8 followers using permutation-equivariant shared weights.
+      </p>
+    </div>
+
+    <div class="research-item">
+      <div class="title">Deep Reinforcement Learning for Quadrotor Flight Control</div>
+      <div class="meta">
+        <span class="tag">complete</span>
+        NCKU Bioinspiration Lab · Undergraduate Thesis, 2024
+      </div>
+      <p>
+        Implemented DDPG in simulation to train an autonomous quadcopter flight controller. Performed ablation studies on reward shaping, action-space normalization, and noise injection to optimize flight policy.
+      </p>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <h2>Experience</h2>
+
+    <div class="exp-item">
+      <div class="date">Summer 2026</div>
+      <div class="exp-content">
+        <div class="org">Robot Learning Lab, UW</div>
+        <div class="position">Research Assistant · Supervisor: Tyler Han</div>
+        <div class="desc">LLM-augmented reward learning for imitation from observation (MPAIL). Targeting ICRA 2026.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="date">Jan 2026 – Present</div>
+      <div class="exp-content">
+        <div class="org">Washington Aerial Robotics (IARC Mission 10)</div>
+        <div class="position">Software Engineer</div>
+        <div class="desc">Architected peer-to-peer coordination layer using ROS2/FastDDS with gossip-protocol diffusion across 4 autonomous agents (&lt;100ms latency). Designed decentralized task-auction mechanism and hierarchical state machine.</div>
+      </div>
+    </div>
+
+    <div class="exp-item">
+      <div class="date">Jun–Aug 2024</div>
+      <div class="exp-content">
+        <div class="org">AUO-Digitech</div>
+        <div class="position">Data Engineer Intern · Hsinchu, Taiwan</div>
+        <div class="desc">Built training pipelines for predictive ML models on manufacturing data. Developed NLP applications using fine-tuned BERT and GPT models. Supported R&D on drone applications in factory automation.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h3>Languages & Tools</h3>
+        <p>Python · C++ · MATLAB · ROS2 · PyTorch · CasADi/IPOPT · MuJoCo · CUDA · Docker · Git</p>
+      </div>
+      <div class="skill-group">
+        <h3>Robotics & Control</h3>
+        <p>Robot Manipulation · MPC · NMPC · Path Planning · SLAM · Behavior Trees · FK/IK · Multi-Agent</p>
+      </div>
+      <div class="skill-group">
+        <h3>ML / AI</h3>
+        <p>Deep RL · GNN · Transformer · World Models (RSSM) · Imitation Learning · VLA · Multimodal LLM</p>
+      </div>
+      <div class="skill-group">
+        <h3>Education</h3>
+        <p>MS Mechanical Engineering (Data Science), UW · BS Energy Engineering, NCKU</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    Hao Lee · Seattle, WA · Last updated May 2026
+  </footer>
+
+</div>
+</body>
+</html>
